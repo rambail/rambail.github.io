@@ -49,13 +49,13 @@ border-radius: 6px;
 }
 
 /* Play Video */
-.video-player {
-    display: block;
-    margin-top: 20px;
+.video-container {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+}
 
-    height: 50vh;        /* force half screen height */
-    width: auto;         /* keep aspect ratio */
+.video-container video {
+    max-height: 100%;
     max-width: 100%;
-
-    border-radius: 8px;
 }
