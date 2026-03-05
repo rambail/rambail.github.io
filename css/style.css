@@ -42,8 +42,8 @@ font-family: Arial, sans-serif;
 
 /* Indent children */
 .submenu a {
-    padding-left: 40px;
-    font-size: 15px;
+    padding-left: calc(40px + 1cm);  /* shift 1cm more right */
+    font-size: 13px;                 /* smaller font */
 }
 
 /* Show submenu when parent clicked */
