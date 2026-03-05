@@ -80,46 +80,41 @@ body {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 15px;
     margin-top: 30px;
 }
 
 .video-card {
     display: block;
-    background: #f3f4f6;
-    text-align: center;
     text-decoration: none;
     color: #111827;
-    border-radius: 8px;
     font-weight: 500;
-    transition: 0.2s ease;
-    padding: 0;              /* remove inner padding */
-    overflow: hidden;        /* crop overflow */
     border-radius: 10px;
+    overflow: hidden;
     background: #e5e7eb;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .video-card:hover {
-    background: #d1d5db;
     transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* ============================= */
 /* PHOTO GRID */
 /* ============================= */
 
-
 /* Thumbnail image styling */
 .video-card img {
     width: 100%;
-    height: 200px;           /* fixed thumbnail height */
-    object-fit: cover;       /* crop nicely without distortion */
+    height: 200px;
+    object-fit: cover;
     display: block;
-    transition: 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
-/* Hover effect */
+/* Hover effect — only scale img, card already scales */
 .video-card:hover img {
     transform: scale(1.05);
 }
