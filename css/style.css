@@ -54,7 +54,7 @@ font-family: Arial, sans-serif;
 
 /* Main Content */
 .content {
-margin-left: 220px;
+margin-left: 240px;
 padding: 40px;
 }
 
@@ -84,4 +84,30 @@ border-radius: 6px;
 .video-container video {
     max-height: 100%;
     max-width: 100%;
+}
+
+/* Video grid layout */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Video cards */
+.video-card {
+    display: block;
+    background: #f3f4f6;
+    padding: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: #111827;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.video-card:hover {
+    background: #d1d5db;
+    transform: scale(1.03);
 }
