@@ -88,13 +88,16 @@ body {
 .video-card {
     display: block;
     background: #f3f4f6;
-    padding: 30px;
     text-align: center;
     text-decoration: none;
     color: #111827;
     border-radius: 8px;
     font-weight: 500;
     transition: 0.2s ease;
+    padding: 0;              /* remove inner padding */
+    overflow: hidden;        /* crop overflow */
+    border-radius: 10px;
+    background: #e5e7eb;
 }
 
 .video-card:hover {
@@ -102,6 +105,24 @@ body {
     transform: scale(1.03);
 }
 
+/* ============================= */
+/* PHOTO GRID */
+/* ============================= */
+
+
+/* Thumbnail image styling */
+.video-card img {
+    width: 100%;
+    height: 200px;           /* fixed thumbnail height */
+    object-fit: cover;       /* crop nicely without distortion */
+    display: block;
+    transition: 0.3s ease;
+}
+
+/* Hover effect */
+.video-card:hover img {
+    transform: scale(1.05);
+}
 /* ============================= */
 /* MEDIA (Video Page Player) */
 /* ============================= */
