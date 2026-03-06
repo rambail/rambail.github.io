@@ -59,11 +59,11 @@ body {
 }
 
 /* Show submenu when checkbox checked */
-#-toggle:checked ~ .submenu {
+#rem-toggle:checked ~ label ~ .submenu {
     display: flex;
 }
 
-#mus-toggle:checked ~ .submenu {
+#mus-toggle:checked ~ label ~ .submenu {
     display: flex;
 }
 
