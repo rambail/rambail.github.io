@@ -61,7 +61,7 @@ body {
 
 /* Indent children */
 .submenu a {
-    padding-left: 60px;  /* clean indent */
+    padding-left: 60px;
     font-size: 13px;
 }
 
@@ -70,7 +70,7 @@ body {
 /* ============================= */
 
 .content {
-    margin-left: 220px;   /* same as sidebar width */
+    margin-left: 220px;
     padding: 40px;
 }
 
@@ -80,16 +80,16 @@ body {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
     margin-top: 30px;
 }
 
 .video-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     color: #111827;
-    font-weight: 500;
     border-radius: 10px;
     overflow: hidden;
     background: #e5e7eb;
@@ -102,22 +102,65 @@ body {
 }
 
 /* ============================= */
-/* PHOTO GRID */
+/* VIDEO THUMBNAIL */
 /* ============================= */
 
-/* Thumbnail image styling */
-.video-card img {
+.video-thumb-wrapper {
+    position: relative;
     width: 100%;
-    height: 100px;
+    height: 130px;
+    background: #1f2937;
+    overflow: hidden;
+}
+
+.video-thumb {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
 }
 
-/* Hover effect — only scale img, card already scales */
-.video-card:hover img {
+.video-card:hover .video-thumb {
     transform: scale(1.05);
 }
+
+/* Play button overlay */
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #1f2937;
+    padding-left: 3px; /* optical centering for triangle */
+    pointer-events: none;
+    transition: background 0.2s ease;
+}
+
+.video-card:hover .play-icon {
+    background: rgba(255, 255, 255, 1);
+}
+
+/* ============================= */
+/* VIDEO CAPTION */
+/* ============================= */
+
+.video-caption {
+    display: block;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+}
+
 /* ============================= */
 /* MEDIA (Video Page Player) */
 /* ============================= */
