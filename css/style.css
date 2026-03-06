@@ -27,6 +27,10 @@ body {
     display: none;
 }
 
+#mus-toggle {
+    display: none;
+}
+
 /* Main links */
 .sidebar a,
 .menu-toggle {
@@ -55,7 +59,11 @@ body {
 }
 
 /* Show submenu when checkbox checked */
-#rem-toggle:checked ~ .submenu {
+#-toggle:checked ~ .submenu {
+    display: flex;
+}
+
+#mus-toggle:checked ~ .submenu {
     display: flex;
 }
 
