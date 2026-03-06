@@ -33,24 +33,49 @@
     <div class="video-grid">
 
         <a href="video/RatDance.mp4" target="_blank" class="video-card">
-            Rathika on Covid
+            <div class="video-thumb-wrapper">
+                <video class="video-thumb" src="video/RatDance.mp4" preload="metadata" muted></video>
+                <div class="play-icon">&#9654;</div>
+            </div>
+            <span class="video-caption">Rathika on Covid</span>
         </a>
 
         <a href="video/Rat.10.5.22.mp4" target="_blank" class="video-card">
-            Rathika B'day
+            <div class="video-thumb-wrapper">
+                <video class="video-thumb" src="video/Rat.10.5.22.mp4" preload="metadata" muted></video>
+                <div class="play-icon">&#9654;</div>
+            </div>
+            <span class="video-caption">Rathika B'day</span>
         </a>
 
         <a href="video/seemaBD.mp4" target="_blank" class="video-card">
-            Seema B'day
+            <div class="video-thumb-wrapper">
+                <video class="video-thumb" src="video/seemaBD.mp4" preload="metadata" muted></video>
+                <div class="play-icon">&#9654;</div>
+            </div>
+            <span class="video-caption">Seema B'day</span>
         </a>
 
         <a href="video/parents.mp4" target="_blank" class="video-card">
-            Card Game On!
+            <div class="video-thumb-wrapper">
+                <video class="video-thumb" src="video/parents.mp4" preload="metadata" muted></video>
+                <div class="play-icon">&#9654;</div>
+            </div>
+            <span class="video-caption">Card Game On!</span>
         </a>
 
     </div>
 
 </div>
+
+<script>
+    // Seek each video to 1 second to capture a meaningful thumbnail frame
+    document.querySelectorAll('.video-thumb').forEach(function(video) {
+        video.addEventListener('loadedmetadata', function() {
+            video.currentTime = 1;
+        });
+    });
+</script>
 
 </body>
 </html>
