@@ -28,25 +28,106 @@
 
 <div class="content">
 
-    <h1>Audio Archive</h1>
+    <h1>Dad's Call</h1>
 
-    <div class="video-grid">
+    <div class="audio-list">
 
-        <a href="audio/1.mp3" target="_blank" class="video-card">
-            ....
-        </a>
+        <div class="audio-card" onclick="toggleAudio(this, 'audio/1.mp3')">
+            <div class="audio-card-left">
+                <div class="audio-play-btn">&#9654;</div>
+                <div class="audio-info">
+                    <span class="audio-title">Caption One</span>
+                    <span class="audio-duration" data-src="audio/1.mp3">--:--</span>
+                </div>
+            </div>
+            <div class="audio-waveform">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <audio src="audio/1.mp3" preload="metadata"></audio>
+        </div>
 
-        <a href="audio/2.mp3" target="_blank" class="video-card">
-            ....
-        </a>
+        <div class="audio-card" onclick="toggleAudio(this, 'audio/2.mp3')">
+            <div class="audio-card-left">
+                <div class="audio-play-btn">&#9654;</div>
+                <div class="audio-info">
+                    <span class="audio-title">Caption Two</span>
+                    <span class="audio-duration" data-src="audio/2.mp3">--:--</span>
+                </div>
+            </div>
+            <div class="audio-waveform">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <audio src="audio/2.mp3" preload="metadata"></audio>
+        </div>
 
-        <a href="audio/1.mp3" target="_blank" class="video-card">
-            ....
-        </a>
+        <div class="audio-card" onclick="toggleAudio(this, 'audio/3.mp3')">
+            <div class="audio-card-left">
+                <div class="audio-play-btn">&#9654;</div>
+                <div class="audio-info">
+                    <span class="audio-title">Caption Three</span>
+                    <span class="audio-duration" data-src="audio/3.mp3">--:--</span>
+                </div>
+            </div>
+            <div class="audio-waveform">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <audio src="audio/3.mp3" preload="metadata"></audio>
+        </div>
 
     </div>
 
 </div>
+
+<script>
+    // Load durations once metadata is available
+    document.querySelectorAll('.audio-card audio').forEach(function(audio) {
+        audio.addEventListener('loadedmetadata', function() {
+            const mins = Math.floor(audio.duration / 60);
+            const secs = Math.floor(audio.duration % 60).toString().padStart(2, '0');
+            const card = audio.closest('.audio-card');
+            card.querySelector('.audio-duration').textContent = mins + ':' + secs;
+        });
+    });
+
+    let currentCard = null;
+
+    function toggleAudio(card, src) {
+        const audio = card.querySelector('audio');
+        const btn = card.querySelector('.audio-play-btn');
+
+        // If another card is playing, stop it
+        if (currentCard && currentCard !== card) {
+            const prevAudio = currentCard.querySelector('audio');
+            const prevBtn = currentCard.querySelector('.audio-play-btn');
+            prevAudio.pause();
+            prevAudio.currentTime = 0;
+            prevBtn.innerHTML = '&#9654;';
+            currentCard.classList.remove('playing');
+        }
+
+        if (audio.paused) {
+            audio.play();
+            btn.innerHTML = '&#9646;&#9646;';
+            card.classList.add('playing');
+            currentCard = card;
+        } else {
+            audio.pause();
+            btn.innerHTML = '&#9654;';
+            card.classList.remove('playing');
+            currentCard = null;
+        }
+
+        // Reset button when audio ends
+        audio.onended = function() {
+            btn.innerHTML = '&#9654;';
+            card.classList.remove('playing');
+            currentCard = null;
+        };
+    }
+</script>
 
 </body>
 </html>
