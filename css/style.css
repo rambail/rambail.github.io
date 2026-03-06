@@ -182,3 +182,146 @@ body {
     max-height: 100%;
     max-width: 100%;
 }
+
+/* ============================= */
+/* AUDIO LIST */
+/* ============================= */
+
+.audio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+    max-width: 620px;
+}
+
+.audio-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #e5e7eb;
+    border-radius: 12px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    user-select: none;
+}
+
+.audio-card:hover {
+    background: #d1d5db;
+    transform: translateX(4px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.audio-card.playing {
+    background: #1f2937;
+}
+
+.audio-card-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.audio-play-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #1f2937;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    padding-left: 2px;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.audio-card.playing .audio-play-btn {
+    background: #4b5563;
+}
+
+.audio-card:hover .audio-play-btn {
+    background: #374151;
+}
+
+.audio-card.playing:hover .audio-play-btn {
+    background: #6b7280;
+}
+
+.audio-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.audio-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.audio-card.playing .audio-title {
+    color: #f9fafb;
+}
+
+.audio-duration {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.audio-card.playing .audio-duration {
+    color: #9ca3af;
+}
+
+/* Decorative waveform bars */
+.audio-waveform {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 28px;
+}
+
+.audio-waveform span {
+    display: block;
+    width: 3px;
+    border-radius: 3px;
+    background: #9ca3af;
+    transition: background 0.2s ease;
+    animation: none;
+}
+
+/* Varying bar heights for natural waveform look */
+.audio-waveform span:nth-child(1)  { height: 40%; }
+.audio-waveform span:nth-child(2)  { height: 70%; }
+.audio-waveform span:nth-child(3)  { height: 55%; }
+.audio-waveform span:nth-child(4)  { height: 90%; }
+.audio-waveform span:nth-child(5)  { height: 60%; }
+.audio-waveform span:nth-child(6)  { height: 100%; }
+.audio-waveform span:nth-child(7)  { height: 75%; }
+.audio-waveform span:nth-child(8)  { height: 50%; }
+.audio-waveform span:nth-child(9)  { height: 80%; }
+.audio-waveform span:nth-child(10) { height: 45%; }
+
+/* Animate waveform when playing */
+.audio-card.playing .audio-waveform span {
+    background: #6b7280;
+    animation: wave 0.8s ease-in-out infinite alternate;
+}
+
+.audio-card.playing .audio-waveform span:nth-child(1)  { animation-delay: 0.0s; }
+.audio-card.playing .audio-waveform span:nth-child(2)  { animation-delay: 0.1s; }
+.audio-card.playing .audio-waveform span:nth-child(3)  { animation-delay: 0.2s; }
+.audio-card.playing .audio-waveform span:nth-child(4)  { animation-delay: 0.3s; }
+.audio-card.playing .audio-waveform span:nth-child(5)  { animation-delay: 0.4s; }
+.audio-card.playing .audio-waveform span:nth-child(6)  { animation-delay: 0.3s; }
+.audio-card.playing .audio-waveform span:nth-child(7)  { animation-delay: 0.2s; }
+.audio-card.playing .audio-waveform span:nth-child(8)  { animation-delay: 0.1s; }
+.audio-card.playing .audio-waveform span:nth-child(9)  { animation-delay: 0.05s; }
+.audio-card.playing .audio-waveform span:nth-child(10) { animation-delay: 0.15s; }
+
+@keyframes wave {
+    from { transform: scaleY(0.4); }
+    to   { transform: scaleY(1.0); }
+}
