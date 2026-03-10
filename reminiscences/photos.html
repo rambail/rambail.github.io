@@ -256,6 +256,93 @@
 
 </div>
 
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" id="lb-close">&#x2715;</button>
+    <button class="lightbox-btn lightbox-prev" id="lb-prev">&#8249;</button>
+    <div class="lightbox-img-wrapper">
+        <img class="lightbox-img" id="lb-img" src="" alt="">
+    </div>
+    <button class="lightbox-btn lightbox-next" id="lb-next">&#8250;</button>
+    <div class="lightbox-caption" id="lb-caption"></div>
+    <div class="lightbox-counter" id="lb-counter"></div>
+</div>
+
+<script>
+(function () {
+    // Collect all photo cards from both grids
+    const cards = Array.from(document.querySelectorAll('.photo-grid .video-card'));
+    let current = 0;
+
+    const overlay  = document.getElementById('lightbox');
+    const img      = document.getElementById('lb-img');
+    const caption  = document.getElementById('lb-caption');
+    const counter  = document.getElementById('lb-counter');
+    const btnClose = document.getElementById('lb-close');
+    const btnPrev  = document.getElementById('lb-prev');
+    const btnNext  = document.getElementById('lb-next');
+
+    function show(index) {
+        current = (index + cards.length) % cards.length;
+        const card = cards[current];
+        img.src = card.getAttribute('href');
+        img.alt = card.querySelector('img').alt;
+        caption.textContent = card.querySelector('.photo-caption').textContent;
+        counter.textContent = (current + 1) + ' / ' + cards.length;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Open on card click
+    cards.forEach(function (card, i) {
+        card.addEventListener('click', function (e) {
+            e.preventDefault();
+            show(i);
+        });
+    });
+
+    btnClose.addEventListener('click', close);
+    btnPrev.addEventListener('click', function () { show(current - 1); });
+    btnNext.addEventListener('click', function () { show(current + 1); });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('active')) return;
+        if (e.key === 'ArrowLeft')  show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+        if (e.key === 'Escape')     close();
+    });
+
+    // Click backdrop to close
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) close();
+    });
+
+    // Touch / swipe support
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    overlay.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    overlay.addEventListener('touchend', function (e) {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+            if (dx < 0) show(current + 1);
+            else        show(current - 1);
+        }
+    }, { passive: true });
+})();
+</script>
+
 </body>
 </html>
 
